@@ -1,0 +1,10 @@
+streamlit
+langgraph
+google-generativeai
+python-dotenv
+requests
+beautifulsoup4
+python-whois
+python-Levenshtein
+networkx
+streamlit-agraph
