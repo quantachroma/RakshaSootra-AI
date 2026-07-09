@@ -1,11 +1,10 @@
-# Environments
 venv/
+.venv/
+__pycache__/
+*.pyc
+.env
+data/processed/
+*.db
+*.sqlite3
 .env
 
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-
-# Streamlit
-.streamlit/secrets.toml

@@ -1,10 +1,12 @@
-streamlit
+openai
 langgraph
-google-generativeai
-python-dotenv
+streamlit
+networkx
+streamlit-agraph
 requests
 beautifulsoup4
 python-whois
 python-Levenshtein
-networkx
-streamlit-agraph
+python-dotenv
+chromadb
+sentence-transformers
