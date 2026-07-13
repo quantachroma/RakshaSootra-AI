@@ -7,4 +7,4 @@ data/processed/
 *.db
 *.sqlite3
 .env
-
+raksha_sootra.db

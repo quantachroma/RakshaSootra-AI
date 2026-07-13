@@ -22,7 +22,17 @@ def create_tables():
     upi_id TEXT
     )
     """)
+
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS sebi_registered(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    broker_name TEXT,
+    registration_no TEXT,
+    city TEXT,
+    state TEXT,
+    validity TEXT
+    )
+    """)
     connection.commit()
     connection.close()
-    
 
