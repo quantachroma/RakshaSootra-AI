@@ -1,14 +1,6 @@
-from agent.investment_verifier.models import InvestmentPlatform
-from agent.investment_verifier.rules import check_platform
-
-
-def investment_verifier_agent(platform_name: str):
-    """
-    Entry point for the Investment Verifier agent.
-    """
-
-    platform = InvestmentPlatform(
-        platform_name=platform_name
-    )
-
-    return check_platform(platform)
+def run_investment_verifier(state: dict) -> dict:
+    """Person 3 will build the real logic here later."""
+    state["risk_level"] = "risky"
+    state["explanation"] = "[Investment Verifier] Platform not found in SEBI registry. Promises unrealistic returns."
+    state["extracted_entities"] = {"platform": ["CryptoMax Profit"]}
+    return state
