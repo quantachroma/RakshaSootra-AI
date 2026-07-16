@@ -1,135 +1,73 @@
-from typing import TypedDict, Dict, Any
+# Owner- Shraddha Tyagi 
+from typing import TypedDict, Dict
 from langgraph.graph import StateGraph, END
 import re
 
-# ==========================================
-# TASK 1: DEFINE THE SHARED STATE
-# ==========================================
-# This is the "luggage tag" passed between agents
+# --- 1. SHARED STATE ---
 class AgentState(TypedDict):
     user_input: str
-    input_type: str          # 'link', 'message', 'transaction', 'investment'
-    risk_level: str          # 'safe', 'risky', 'high_risk'
-    explanation: str         # Plain language explanation of the verdict
-    extracted_entities: Dict # e.g., {"upi": [], "phone": [], "domain": []}
+    input_type: str          
+    risk_level: str          
+    explanation: str         
+    extracted_entities: Dict 
 
-# ==========================================
-# TASK 2: CLASSIFICATION LOGIC
-# ==========================================
-def classify_input(state: AgentState) -> AgentState:
-    """Analyzes the raw input and determines which scanner it goes to."""
-    text = state["user_input"].lower()
-    
-    # Simple heuristic routing
-    if "http://" in text or "https://" in text or re.search(r'\.[a-z]{2,3}(/|$)', text):
-        state["input_type"] = "link"
-    elif any(word in text for word in ["rs.", "inr", "upi", "paid", "transfer", "debited"]):
-        state["input_type"] = "transaction"
-    elif any(word in text for word in ["invest", "returns", "profit", "trading", "crypto", "sebi"]):
-        state["input_type"] = "investment"
-    else:
-        # Default to message/script checker
-        state["input_type"] = "message"
-        
-    return state
-
-# ==========================================
-# TASK 3: PLACEHOLDER NODES (The 4 Scanners)
-# ==========================================
-def link_shield_node(state: AgentState) -> AgentState:
+# --- 2. AGENT NODES (Mock Logic for Day 4 Demo) ---
+# These will be replaced by real imports on Day 5
+def run_link_shield(state: AgentState) -> AgentState:
     state["risk_level"] = "high_risk"
-    state["explanation"] = "[Mock Link Shield] This domain is newly registered and uses typosquatting."
+    state["explanation"] = "CRITICAL: This URL uses a 'typosquatted' domain (fake bank name) and matches known phishing patterns."
     state["extracted_entities"] = {"domain": ["hdfc-update-kyc.xyz"]}
     return state
 
-def scam_script_node(state: AgentState) -> AgentState:
+def run_scam_script(state: AgentState) -> AgentState:
     state["risk_level"] = "high_risk"
-    state["explanation"] = "[Mock Scam Script] Matches 'Digital Arrest' fear tactics. CBI does not call via WhatsApp."
+    state["explanation"] = "Matches 'Digital Arrest' patterns. Real authorities (CBI/Police) never conduct legal proceedings via WhatsApp."
     state["extracted_entities"] = {"phone": ["+91-9876543210"]}
     return state
 
-def transaction_guard_node(state: AgentState) -> AgentState:
+def run_transaction_guard(state: AgentState) -> AgentState:
     state["risk_level"] = "risky"
-    state["explanation"] = "[Mock Txn Guard] Amount exceeds your 10k threshold and payee is new."
+    state["explanation"] = "This transaction exceeds your ₹10,000 safety limit for a recipient you have never paid before."
     state["extracted_entities"] = {"upi": ["scammer@ybl"]}
     return state
 
-def investment_verifier_node(state: AgentState) -> AgentState:
-    state["risk_level"] = "risky"
-    state["explanation"] = "[Mock Invest Verifier] Platform promises 'guaranteed returns' but is not on SEBI list."
+def run_investment_verifier(state: AgentState) -> AgentState:
+    state["risk_level"] = "high_risk"
+    state["explanation"] = "SCAM ALERT: 'Guaranteed 200% returns' is a hallmark of Ponzi schemes. This platform is NOT SEBI-registered."
     state["extracted_entities"] = {"platform": ["CryptoMax Profit"]}
     return state
 
-# ==========================================
-# BUILD THE LANGGRAPH WORKFLOW
-# ==========================================
+# --- 3. CLASSIFICATION LOGIC ---
+def classify_input(state: AgentState) -> AgentState:
+    text = state["user_input"].lower()
+    if "http" in text or ".com" in text or ".xyz" in text:
+        state["input_type"] = "link"
+    elif any(word in text for word in ["rs.", "inr", "upi", "paid", "transfer"]):
+        state["input_type"] = "transaction"
+    elif any(word in text for word in ["invest", "returns", "profit", "crypto"]):
+        state["input_type"] = "investment"
+    else:
+        state["input_type"] = "message"
+    return state
+
 def route_to_agent(state: AgentState) -> str:
-    """Reads the input_type and tells LangGraph which node to go to next."""
     return state["input_type"]
 
+# --- 4. GRAPH ASSEMBLY ---
 workflow = StateGraph(AgentState)
-
-# Add all nodes
 workflow.add_node("classifier", classify_input)
-workflow.add_node("link", link_shield_node)
-workflow.add_node("message", scam_script_node)
-workflow.add_node("transaction", transaction_guard_node)
-workflow.add_node("investment", investment_verifier_node)
+workflow.add_node("link", run_link_shield)
+workflow.add_node("message", run_scam_script)
+workflow.add_node("transaction", run_transaction_guard)
+workflow.add_node("investment", run_investment_verifier)
 
-# Set the entry point
 workflow.set_entry_point("classifier")
-
-# Add conditional edges from the classifier to the specific agents
-workflow.add_conditional_edges(
-    "classifier",
-    route_to_agent,
-    {
-        "link": "link",
-        "message": "message",
-        "transaction": "transaction",
-        "investment": "investment"
-    }
-)
-
-# All agents end the workflow after they do their job
+workflow.add_conditional_edges("classifier", route_to_agent, {
+    "link": "link", "message": "message", "transaction": "transaction", "investment": "investment"
+})
 workflow.add_edge("link", END)
 workflow.add_edge("message", END)
 workflow.add_edge("transaction", END)
 workflow.add_edge("investment", END)
 
-# Compile the router
 rakshasootra_router = workflow.compile()
-
-# ==========================================
-# TASK 4: TEST ROUTING WITH 4 HARDCODED INPUTS
-# ==========================================
-if __name__ == "__main__":
-    print("🛡️ Testing RakshaSootra Router...\n")
-    
-    test_inputs = [
-        "Please update your KYC here: http://hdfc-update-kyc.xyz",
-        "CBI Alert: Your Aadhaar is suspended. Pay fine immediately.",
-        "Paid Rs. 15000 to unknown@ybl",
-        "Invest 5000 today and get guaranteed 200% returns in crypto!"
-    ]
-    
-    for text in test_inputs:
-        print(f"📥 Input: {text}")
-        
-        # Initialize empty state
-        initial_state = {
-            "user_input": text,
-            "input_type": "",
-            "risk_level": "",
-            "explanation": "",
-            "extracted_entities": {}
-        }
-        
-        # Run the graph
-        result = rakshasootra_router.invoke(initial_state)
-        
-        print(f"🔀 Routed to: {result['input_type'].upper()} Agent")
-        print(f"⚠️ Verdict: {result['risk_level']}")
-        print(f"📝 Explanation: {result['explanation']}\n")
-        print("-" * 50 + "\n")
-        

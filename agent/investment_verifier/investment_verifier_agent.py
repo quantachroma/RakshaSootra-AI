@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from agent.investment_verifier.llm_checker import (
     analyze_investment
 )
@@ -271,3 +272,11 @@ def run_investment_verifier(state):
     return {
         "investment_result": result
     }
+=======
+def run_investment_verifier(state: dict) -> dict:
+    """Person 3 will build the real logic here later."""
+    state["risk_level"] = "risky"
+    state["explanation"] = "[Investment Verifier] Platform not found in SEBI registry. Promises unrealistic returns."
+    state["extracted_entities"] = {"platform": ["CryptoMax Profit"]}
+    return state
+>>>>>>> e25fcbada357d35053bed5eed2c1f12533460ca6

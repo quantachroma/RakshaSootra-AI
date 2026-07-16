@@ -55,8 +55,9 @@ def llm_check_link(url: str, domain: str, domain_age_days: int, page_text: str) 
     """Queries the centralized Gemini OpenRouter deployment model."""
     age_str = f"{domain_age_days} days old" if domain_age_days >= 0 else "Unknown / Recently Registered"
 
-    prompt = f"""
-    You are an elite cyber-forensics intelligence model inspecting Indian digital payment system fraud.
+    system_prompt = "You are an elite cyber-forensics intelligence model inspecting Indian digital payment system fraud."
+    
+    user_prompt = f"""
     Evaluate the target URL structural parameters and scraped page text content for malicious patterns.
 
     [FORENSIC PARAMETERS]
@@ -69,21 +70,24 @@ def llm_check_link(url: str, domain: str, domain_age_days: int, page_text: str) 
 
     [BEHAVIORAL RISK THREAT VECTORS]
     Inspect aggressively for these high-volume Indian financial scams:
-    1. "Pay vs Receive" Inversion: Site offers a refund, claim credit, or lottery reward but guides users to type a UPI PIN or pass an authentication validation protocol.
-    2. Hidden Autopay / e-Mandate Traps: Tricking citizens into setting continuous transaction authorizations under the guise of an initial small processing fee (e.g., ₹1).
-    3. Remote Access Utility Injection: Contextual directives instructing the target to download third-party software (AnyDesk, TeamViewer, QuickSupport, manual APK assets) to debug sync failures.
-    4. E-Commerce Uniform Pricing Fraud: Storefront displays completely distinct goods sharing flat discount prices (e.g., all items at ₹499) while entirely disabling Cash on Delivery (COD).
-    5. Fake Reputed Certifications: Cohorts using unauthorized IIT, AICTE, NPTEL, or ministerial badges to solicit application document verification deposits.
-    6. Viral Shared Forwarding Gates: Forcing visitors to distribute the URL link to WhatsApp chat groups to release a lottery reward validation box.
+    1. "Pay vs Receive" Inversion: Site offers a refund, claim credit, or lottery reward but guides users to type a UPI PIN.
+    2. Hidden Autopay / e-Mandate Traps: Tricking citizens into setting continuous transaction authorizations.
+    3. Remote Access Utility Injection: Instructing the target to download third-party software (AnyDesk, APKs).
+    4. E-Commerce Uniform Pricing Fraud: Storefront displays completely distinct goods sharing flat discount prices.
+    5. Fake Reputed Certifications: Cohorts using unauthorized IIT, AICTE, NPTEL badges.
+    6. Viral Shared Forwarding Gates: Forcing visitors to distribute the URL link to WhatsApp chat groups.
 
     [OUTPUT COMPLIANCE DESIGN]
     Return ONLY a raw, unformatted JSON dictionary matching this architecture. Avoid markdown fences or text wrappers:
     {{
-        "risk_level": "safe" or "risky" or "high risk",
+        "risk_level": "safe" or "risky" or "high_risk",
         "explanation": "A concise one-sentence description outlining the precise dynamic risk finding."
     }}
     """
-    raw_response = ask_llm(prompt)
+    
+    # FIX: Pass both system_prompt and user_prompt to our shared LLM client
+    raw_response = ask_llm(system_prompt=system_prompt, user_text=user_prompt)
+    
     try:
         clean_json = raw_response.replace("```json", "").replace("```", "").strip()
         return json.loads(clean_json)
@@ -100,7 +104,7 @@ def check_link(url: str) -> dict:
     domain = rule_verdict["extracted_entities"]["domain"]
 
     # Short circuit logic if local rules confidently confirm high risk
-    if rule_verdict["risk_level"] == "high risk":
+    if rule_verdict["risk_level"] == "high_risk":
         return rule_verdict
 
     # 2. Second Pass: Dynamic Context Extraction
@@ -121,11 +125,25 @@ def check_link(url: str) -> dict:
     return {
         "risk_level": final_risk,
         "explanation": final_explanation,
-        "extracted_entities": {"domain": domain}
+        "extracted_entities": {"domain": [domain]}
     }
+
+# ==========================================
+# LANGGRAPH INTEGRATION NODE
+# ==========================================
 def run_link_shield(state: dict) -> dict:
-    """Person 2 will build the real logic here later."""
-    state["risk_level"] = "high_risk"
-    state["explanation"] = "[Link Shield Agent] Detected suspicious typosquatting in the domain."
-    state["extracted_entities"] = {"domain": ["hdfc-update-kyc.xyz"]}
+    """
+    This is the LangGraph node. It takes the state, extracts the user's input,
+    runs Person 2's real logic, and updates the state with the real verdict!
+    """
+    url = state.get("user_input", "").strip()
+    
+    # Run the REAL logic!
+    real_verdict = check_link(url)
+    
+    # Update the LangGraph state
+    state["risk_level"] = real_verdict["risk_level"]
+    state["explanation"] = real_verdict["explanation"]
+    state["extracted_entities"] = real_verdict["extracted_entities"]
+    
     return state
