@@ -50,6 +50,8 @@ def main():
                 st.write("Classifying threat vector...")
                 # Run LangGraph
                 result = rakshasootra_router.invoke(state)
+                st.write("🔍 DEBUG:", result)
+                st.write("🔍 DEBUG — raw result:", result)   # <-- add this temporarily
                 st.write(f"Routing to {result['input_type'].upper()} specialist...")
                 status.update(label="Scan Complete!", state="complete", expanded=False)
 

@@ -59,7 +59,7 @@ def check_link_rules(url: str) -> dict:
     # 1. Raw IP Red Flag (High Risk)
     if _is_raw_ip(domain):
         return {
-            "risk_level": "high risk",
+            "risk_level": "high_risk",
             "explanation": "Flagged raw IP address structure instead of a registered domain registry record.",
             "extracted_entities": entities
         }
@@ -71,7 +71,7 @@ def check_link_rules(url: str) -> dict:
         ratio = SequenceMatcher(None, domain, target).ratio()
         if TYPOSQUAT_MIN_RATIO <= ratio <= TYPOSQUAT_MAX_RATIO:
             return {
-                "risk_level": "high risk",
+                "risk_level": "high_risk",
                 "explanation": f"Identified severe structural similarity typosquat impersonating trusted domain '{target}'.",
                 "extracted_entities": entities
             }
