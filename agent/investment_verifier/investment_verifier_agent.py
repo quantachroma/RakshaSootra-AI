@@ -1,104 +1,273 @@
-from agent.investment_verifier.rules import check_platform
-from agent.investment_verifier.llm_checker import analyze_pitch
-from agent.investment_verifier.models import InvestmentPlatform
+from agent.investment_verifier.llm_checker import (
+    analyze_investment
+)
+
+from agent.investment_verifier.rules import (
+    check_platform
+)
+
+from agent.investment_verifier.models import (
+    FinalVerdict
+)
 
 
-def investment_verifier_agent(platform_name: str, pitch: str):
-    """
-    Combines:
-    1. SEBI Registration Check
-    2. LLM Scam Language Detection
-    3. Generates a Final Investment Recommendation
-    """
+def investment_verifier_agent(user_input: str):
 
-    # -----------------------------
-    # Step 1: Create Platform Object
-    # -----------------------------
-    platform = InvestmentPlatform(platform_name)
+    # -----------------------------------------------------
+    # STEP 1 : Analyze User Input using LLM
+    # -----------------------------------------------------
 
-    # -----------------------------
-    # Step 2: Rule-based SEBI Check
-    # -----------------------------
-    broker_result = check_platform(platform)
+    analysis = analyze_investment(user_input)
 
-    # -----------------------------
-    # Step 3: LLM Scam Detection
-    # -----------------------------
-    pitch_result = analyze_pitch(pitch)
+    # -----------------------------------------------------
+    # STEP 2 : Verify Company with SEBI Database
+    # -----------------------------------------------------
 
-    # -----------------------------
-    # Step 4: Determine Safety
-    # -----------------------------
-    broker_safe = broker_result.risk_level.lower() == "safe"
+    verification = check_platform(
 
-    pitch_safe = (
-        pitch_result["risk"].lower() == "safe"
+        company_name=analysis.company_name,
+
+        registration_number=analysis.registration_number
+
     )
 
-    # -----------------------------
-    # Step 5: Final Decision
-    # -----------------------------
-    if broker_safe and pitch_safe:
+    # -----------------------------------------------------
+    # STEP 3 : Decision Engine
+    # -----------------------------------------------------
 
-        recommendation = "INVEST"
+    recommendation = ""
 
-        risk_score = "Low"
+    risk_score = ""
 
-        final_reason = (
-            "The broker is SEBI registered and the investment pitch "
-            "does not contain obvious scam indicators."
-        )
+    reason = ""
 
-    elif broker_safe and not pitch_safe:
+    # =====================================================
+    # VERIFIED
+    # =====================================================
 
-        recommendation = "DO NOT INVEST"
+    if verification.status == "VERIFIED":
 
-        risk_score = "Medium"
+        if analysis.risk == "SAFE":
 
-        final_reason = (
-            "The broker is SEBI registered, but the investment pitch "
-            "contains suspicious or misleading claims."
-        )
+            recommendation = "INVEST"
 
-    elif not broker_safe and pitch_safe:
+            risk_score = "Low"
+
+            reason = (
+
+                f"{verification.explanation}\n\n"
+
+                f"LLM Analysis: {analysis.reason}"
+
+            )
+
+        else:
+
+            recommendation = "DO NOT INVEST"
+
+            risk_score = "High"
+
+            reason = (
+
+                f"{verification.explanation}\n\n"
+
+                "Although the company is SEBI registered, "
+
+                "the investment pitch contains scam "
+
+                "indicators.\n\n"
+
+                f"LLM Analysis: {analysis.reason}"
+
+            )
+
+    # =====================================================
+    # LIKELY VERIFIED
+    # =====================================================
+
+    elif verification.status == "LIKELY VERIFIED":
+
+        if analysis.risk == "SAFE":
+
+            recommendation = "VERIFY DETAILS BEFORE INVESTING"
+
+            risk_score = "Medium"
+
+            reason = (
+
+                f"{verification.explanation}\n\n"
+
+                "The company closely matches a "
+
+                "SEBI registered broker, "
+
+                "but the match is not exact.\n\n"
+
+                f"LLM Analysis: {analysis.reason}"
+
+            )
+
+        else:
+
+            recommendation = "DO NOT INVEST"
+
+            risk_score = "High"
+
+            reason = (
+
+                f"{verification.explanation}\n\n"
+
+                "The company is similar to a SEBI "
+
+                "registered broker, but the investment "
+
+                "pitch itself contains multiple scam "
+
+                "indicators.\n\n"
+
+                f"LLM Analysis: {analysis.reason}"
+
+            )
+
+    # =====================================================
+    # SUSPICIOUS
+    # =====================================================
+
+    elif verification.status == "SUSPICIOUS":
 
         recommendation = "DO NOT INVEST"
 
         risk_score = "High"
 
-        final_reason = (
-            "The investment pitch appears genuine, but the broker "
-            "is not registered with SEBI."
+        reason = (
+
+            f"{verification.explanation}\n\n"
+
+            "The company name resembles a "
+
+            "SEBI registered broker but "
+
+            "is not an exact match.\n\n"
+
+            f"LLM Analysis: {analysis.reason}"
+
         )
+
+    # =====================================================
+    # UNREGISTERED
+    # =====================================================
 
     else:
 
-        recommendation = "HIGH RISK - DO NOT INVEST"
+        recommendation = "DO NOT INVEST"
 
-        risk_score = "Critical"
+        risk_score = "High"
 
-        final_reason = (
-            "The broker is not registered with SEBI and the "
-            "investment pitch contains scam indicators."
+        reason = (
+
+            f"{verification.explanation}\n\n"
+
+            "The company could not be verified "
+
+            "in the SEBI registered brokers "
+
+            "database.\n\n"
+
+            f"LLM Analysis: {analysis.reason}"
+
         )
 
-    # -----------------------------
-    # Step 6: Return Final Result
-    # -----------------------------
+    # -----------------------------------------------------
+    # STEP 4 : Create Final Verdict Object
+    # -----------------------------------------------------
+
+    verdict = FinalVerdict(
+
+        recommendation=recommendation,
+
+        risk_score=risk_score,
+
+        reason=reason
+
+    )
+        # -----------------------------------------------------
+    # STEP 5 : Return Complete Result
+    # -----------------------------------------------------
+
     return {
-        "broker_verification": {
-            "risk": broker_result.risk_level,
-            "reason": broker_result.explanation
+
+        # ================================================
+        # LLM ANALYSIS
+        # ================================================
+
+        "investment_analysis": {
+
+            "company_name": analysis.company_name,
+
+            "registration_number": analysis.registration_number,
+
+            "pitch": analysis.pitch,
+
+            "risk": analysis.risk,
+
+            "reason": analysis.reason
+
         },
 
-        "pitch_analysis": {
-            "risk": pitch_result["risk"],
-            "reason": pitch_result["reason"]
+        # ================================================
+        # COMPANY VERIFICATION
+        # ================================================
+
+        "company_verification": {
+
+            "status": verification.status,
+
+            "confidence": verification.confidence,
+
+            "matched_company": verification.matched_company,
+
+            "registration_number": verification.registration_number,
+
+            "city": verification.city,
+
+            "state": verification.state,
+
+            "explanation": verification.explanation
+
         },
+
+        # ================================================
+        # FINAL VERDICT
+        # ================================================
 
         "final_verdict": {
-            "recommendation": recommendation,
-            "risk_score": risk_score,
-            "reason": final_reason
+
+            "recommendation": verdict.recommendation,
+
+            "risk_score": verdict.risk_score,
+
+            "company_status": verification.status,
+
+            "confidence": verification.confidence,
+
+            "reason": verdict.reason
+
         }
+
+    }
+
+def run_investment_verifier(state):
+    """
+    LangGraph node wrapper function.
+    Receives AgentState and calls investment_verifier_agent.
+    """
+
+    print("Investment Verifier Agent Running...")
+
+    user_input = state.get("user_input", "")
+
+    result = investment_verifier_agent(user_input)
+
+    return {
+        "investment_result": result
     }
