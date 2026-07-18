@@ -1,7 +1,10 @@
 #owner - Shraddha Tyagi
+import networkx as nx
+from streamlit_agraph import agraph, Node, Edge, Config
 import streamlit as st
 import sys
 import os
+import random
 
 # Ensure the root directory is in the python path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -18,7 +21,40 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
+def init_session_state():
+    if "fraud_graph" not in st.session_state:
+        st.session_state.fraud_graph = nx.Graph()
+
+def update_fraud_graph(result: dict):
+    g = st.session_state.fraud_graph
+    entities = result.get("extracted_entities", {})
+    for entity_type, values in entities.items():
+        values = values if isinstance(values, list) else [values]
+        for val in values:
+            g.add_node(val, type=entity_type)
+
+import random
+
+def render_fraud_graph():
+    g = st.session_state.fraud_graph
+    if g.number_of_nodes() == 0:
+        st.warning("No fraud entities reported yet.")
+        return
+
+    random.seed(42)  # keeps positions consistent across reruns
+    nodes = [
+        Node(id=n, label=n, size=25, color="#D9480F",
+             x=random.randint(-250, 250), y=random.randint(-150, 150))
+        for n in g.nodes()
+    ]
+    edges = [Edge(source=s, target=t, color="#6B7280") for s, t in g.edges()]
+    config = Config(width=750, height=400, directed=False, physics=False, backgroundColor="#161b22")
+
+    with st.container(border=True):
+        agraph(nodes=nodes, edges=edges, config=config)
+
 def main():
+    init_session_state()
     st.title("🛡️ RakshaSootra AI")
     st.caption("Citizen-led Fraud Intelligence Network")
     
@@ -50,6 +86,7 @@ def main():
                 st.write("Classifying threat vector...")
                 # Run LangGraph
                 result = rakshasootra_router.invoke(state)
+                update_fraud_graph(result)
                 st.write("🔍 DEBUG:", result)
                 st.write("🔍 DEBUG — raw result:", result)   # <-- add this temporarily
                 st.write(f"Routing to {result['input_type'].upper()} specialist...")
@@ -80,8 +117,11 @@ def main():
                     st.json(result["extracted_entities"])
 
     with tab2:
-        st.header("Fraud Network Graph")
-        st.info("Visualizing connections between reported scams. (Coming Phase 2)")
-
+        st.header("🕸️ LEA Intelligence Graph")
+        g = st.session_state.fraud_graph
+        col1, col2 = st.columns(2)
+        col1.metric("Entities Tracked", g.number_of_nodes())
+        col2.metric("Connections Found", g.number_of_edges())
+        render_fraud_graph()
 if __name__ == "__main__":
     main()
