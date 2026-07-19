@@ -1,30 +1,28 @@
-# 
-
 import json
 import re
 
 from tool.llm_client import ask_llm
 
-from agent.investment_verifier.prompts import (
-    SCAM_DETECTION_SYSTEM_PROMPT
+from agent.transaction_guard.prompts import (
+    TRANSACTION_GUARD_SYSTEM_PROMPT
 )
 
-from agent.investment_verifier.models import (
-    InvestmentAnalysis,
-    ExtractedEntities
+from agent.transaction_guard.models import (
+    TransactionAnalysis,
+    ExtractedEntities,
+    Transaction
 )
 
 
 # ============================================================
-# Extract JSON from LLM Response
+# Extract JSON safely from LLM response
 # ============================================================
 
 def extract_json(response: str) -> dict:
     """
-    Extracts JSON from an LLM response.
-
-    Handles cases where the model accidentally returns
-    extra text or markdown.
+    Extract JSON from OpenRouter response.
+    Handles cases where the model accidentally
+    returns markdown or extra text.
     """
 
     try:
@@ -39,29 +37,38 @@ def extract_json(response: str) -> dict:
         )
 
         if match:
-
             try:
                 return json.loads(match.group())
 
             except Exception:
                 pass
 
-    raise ValueError(
-        "LLM did not return valid JSON."
-    )
+    raise ValueError("LLM returned invalid JSON.")
 
 
 # ============================================================
-# Analyse Investment Pitch
+# Analyze Transaction
 # ============================================================
 
-def analyze_pitch(pitch: str) -> InvestmentAnalysis:
+def analyze_transaction_llm(
+    transaction: Transaction
+) -> TransactionAnalysis:
+
+    user_prompt = f"""
+Amount : ₹{transaction.amount}
+
+Payee Name : {transaction.payee_name}
+
+UPI ID : {transaction.upi_id}
+
+Transaction Time : {transaction.transaction_time}
+"""
 
     response = ask_llm(
 
-        system_prompt=SCAM_DETECTION_SYSTEM_PROMPT,
+        system_prompt=TRANSACTION_GUARD_SYSTEM_PROMPT,
 
-        user_text=pitch
+        user_text=user_prompt
 
     )
 
@@ -74,35 +81,23 @@ def analyze_pitch(pitch: str) -> InvestmentAnalysis:
 
     extracted_entities = ExtractedEntities(
 
-        platform_names=entities.get(
-            "platform_names",
+        upi_ids=entities.get(
+            "upi_ids",
             []
         ),
 
-        domains=entities.get(
-            "domains",
+        phone_numbers=entities.get(
+            "phone_numbers",
             []
         )
 
     )
 
-    return InvestmentAnalysis(
-
-        company_name=data.get(
-            "company_name",
-            ""
-        ),
-
-        registration_number=data.get(
-            "registration_number",
-            ""
-        ),
-
-        pitch=pitch,
+    return TransactionAnalysis(
 
         risk=data.get(
             "risk",
-            "UNKNOWN"
+            "SAFE"
         ),
 
         reason=data.get(

@@ -32,12 +32,16 @@ def process_transaction(transaction: Transaction):
 
     verdict = analyze_transaction(transaction)
 
-    if verdict.risk_level == "High Risk":
+    if verdict.risk_level == "HIGH_RISK":
 
         transaction.status = "Pending"
 
         print("\n⚠ High Risk Transaction Detected")
         print(verdict.explanation)
+
+        print("\nExtracted Entities")
+        print("------------------")
+        print(verdict.extracted_entities)
 
         print("\nStatus :", transaction.status)
 
@@ -50,7 +54,7 @@ def process_transaction(transaction: Transaction):
     else:
 
         transaction.status = "Approved"
-
+        
         print("\n✅ Transaction Approved")
 
     print("\nFinal Status :", transaction.status)
