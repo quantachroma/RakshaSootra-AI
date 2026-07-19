@@ -49,12 +49,12 @@ def process_transaction(transaction: Transaction):
 
         transaction.status = "Cancelled"
 
-        print("\n❌ Transaction Cancelled")
+        print("\n Transaction Cancelled")
 
     else:
 
         transaction.status = "Approved"
         
-        print("\n✅ Transaction Approved")
+        print("\n Transaction Approved")
 
     print("\nFinal Status :", transaction.status)
