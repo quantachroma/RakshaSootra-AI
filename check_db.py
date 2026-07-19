@@ -3,9 +3,9 @@ import sqlite3
 conn = sqlite3.connect("raksha_sootra.db")
 cursor = conn.cursor()
 
-cursor.execute("SELECT COUNT(*) FROM sebi_registered")
-count = cursor.fetchone()[0]
+print("Tables in database:")
 
-print("Total Records:", count)
+cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")
+print(cursor.fetchall())
 
 conn.close()

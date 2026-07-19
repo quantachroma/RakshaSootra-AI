@@ -32,6 +32,12 @@ def simulate_transactions():
             payee_name="Amit",
             upi_id="amit@ybl",
             transaction_time="01:00"
+        ),
+        Transaction(
+            amount=50000,
+            payee_name="Investment Company",
+            upi_id="investment@oksbi",
+            transaction_time="03:10"
         )
 
     ]

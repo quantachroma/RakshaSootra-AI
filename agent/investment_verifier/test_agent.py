@@ -37,18 +37,21 @@ for i, test in enumerate(test_cases, start=1):
     print(f"TEST CASE {i}")
     print("=" * 60)
 
-    result = investment_verifier_agent(
-        platform_name=test["platform"],
-        pitch=test["pitch"]
-    )
+    user_input = f"""
+    Platform: {test['platform']}
 
+    Pitch:
+    {test['pitch']}
+    """
+
+    result = investment_verifier_agent(user_input)
     print("\nBroker Verification")
     print("-------------------")
-    print(result["broker_verification"])
+    print(result["company_verification"])
 
     print("\nPitch Analysis")
     print("--------------")
-    print(result["pitch_analysis"])
+    print(result["investment_analysis"])
 
     print("\nFinal Verdict")
     print("-------------")
