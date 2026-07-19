@@ -14,7 +14,7 @@ def start_countdown(seconds):
 
     for remaining in range(seconds, 0, -1):
         placeholder.warning(
-            f"⏳ Transaction will be processed in {remaining} seconds..."
+            f" Transaction will be processed in {remaining} seconds..."
         )
         time.sleep(1)
 
@@ -27,7 +27,7 @@ def process_transaction(transaction: Transaction):
     """
 
     print("\n==============================")
-    print("📩 Transaction Received")
+    print("Transaction Received")
     print("==============================")
 
     verdict = analyze_transaction(transaction)
@@ -36,7 +36,7 @@ def process_transaction(transaction: Transaction):
 
         transaction.status = "Pending"
 
-        print("\n⚠ High Risk Transaction Detected")
+        print("\nHigh Risk Transaction Detected")
         print(verdict.explanation)
 
         print("\nExtracted Entities")
@@ -49,12 +49,12 @@ def process_transaction(transaction: Transaction):
 
         transaction.status = "Cancelled"
 
-        print("\n❌ Transaction Cancelled")
+        print("\n Transaction Cancelled")
 
     else:
 
         transaction.status = "Approved"
         
-        print("\n✅ Transaction Approved")
+        print("\n Transaction Approved")
 
     print("\nFinal Status :", transaction.status)
