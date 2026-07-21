@@ -1,83 +1,292 @@
 """
-test_rules.py — Link Shield rule-check tests
+Owner- Person 2 - Priyanshi Saini
+test_rules.py — Link Shield Rule Engine Tests
 RakshaSootra AI
 
-Run with:
-    python3 -m pytest test_rules.py -v
-or, if pytest isn't installed:
-    python3 test_rules.py
+Run:
+
+pytest test_rules.py -v
+
+or
+
+python test_rules.py
 """
 
 from agent.link_shield.rules import check_link_rules
-# ---------------------------------------------------------------------------
-# 5 known-bad URLs (should NOT come back "safe")
-# ---------------------------------------------------------------------------
+
+
+# ==========================================================
+# Known malicious URLs
+# ==========================================================
+
 KNOWN_BAD = [
-    ("http://hdfcbank-verify.com/login", "typosquat"),
-    ("http://192.168.1.1/win", "raw IP"),
-    ("http://spin-and-win-prize.xyz/claim", "bait + suspicious TLD"),
-    ("http://free-gift-amazon.xyz/win-amount", "bait on unverified domain"),
-    ("https://myrandomsite.com/account-credited-notice", "fake account alert"),
+
+    (
+        "https://sbii.co.in/login",
+        "Typosquatting"
+    ),
+
+    (
+        "https://secure-sbi-login.xyz",
+        "Trusted brand + suspicious TLD"
+    ),
+
+    (
+        "https://192.168.1.1/login",
+        "Raw IP"
+    ),
+
+    (
+        "https://bit.ly/abcd123",
+        "URL Shortener"
+    ),
+
+    (
+        "https://tinyurl.com/demo",
+        "URL Shortener"
+    ),
+
+    (
+        "https://paytm-reward.xyz",
+        "Reward Scam"
+    ),
+
+    (
+        "https://verify-kyc-update.com",
+        "Keyword Detection"
+    ),
+
+    (
+        "https://amazon-login.xyz",
+        "Fake Amazon"
+    ),
+
+    (
+        "https://freegift.club",
+        "Suspicious TLD"
+    ),
+
+    (
+        "abcd",
+        "Invalid URL"
+    ),
 ]
 
-# ---------------------------------------------------------------------------
-# 5 known-good URLs (SHOULD come back "safe")
-# ---------------------------------------------------------------------------
+
+# ==========================================================
+# Known legitimate URLs
+# ==========================================================
+
 KNOWN_GOOD = [
-    "https://sbi.co.in/personal-banking",
-    "https://www.hdfcbank.com/personal",
-    "https://www.icicibank.com/",
-    "https://uidai.gov.in/",
-    "https://www.amazon.in/orders",
+
+    "https://google.com",
+
+    "https://sbi.co.in",
+
+    "https://paytm.com",
+
+    "https://amazon.in",
+
+    "https://flipkart.com",
+
+    "https://uidai.gov.in",
+
+    "https://hdfcbank.com",
+
+    "https://icicibank.com",
+
 ]
 
+
+# ==========================================================
+# Bad URL Tests
+# ==========================================================
 
 def test_known_bad_urls_are_flagged():
-    for url, reason in KNOWN_BAD:
-        result = check_link_rules(url)
-        assert result["risk_level"] in ("risky", "high risk"), (
-            f"Expected '{url}' to be flagged ({reason}), got {result['risk_level']}"
-        )
-        assert "domain" in result["extracted_entities"]
-        print(f"[BAD]  {url:55s} -> {result['risk_level']:9s} | {result['explanation']}")
 
+    for url, reason in KNOWN_BAD:
+
+        result = check_link_rules(url)
+
+        assert result["risk_level"] in (
+            "risky",
+            "high risk",
+        ), (
+            f"{url} ({reason}) was incorrectly classified as SAFE."
+        )
+
+        assert "domain" in result["extracted_entities"]
+
+        assert isinstance(
+            result["extracted_entities"]["domain"],
+            str,
+        )
+
+
+# ==========================================================
+# Good URL Tests
+# ==========================================================
 
 def test_known_good_urls_are_safe():
-    for url in KNOWN_GOOD:
-        result = check_link_rules(url)
-        assert result["risk_level"] == "safe", (
-            f"Expected '{url}' to be safe, got {result['risk_level']}: {result['explanation']}"
-        )
-        print(f"[GOOD] {url:55s} -> {result['risk_level']:9s} | {result['explanation']}")
 
+    for url in KNOWN_GOOD:
+
+        result = check_link_rules(url)
+
+        assert result["risk_level"] == "safe", (
+            f"{url} incorrectly flagged as "
+            f"{result['risk_level']}"
+        )
+
+
+# ==========================================================
+# Schema Validation
+# ==========================================================
 
 def test_output_schema():
+
     result = check_link_rules("https://example.com")
-    assert set(result.keys()) == {"risk_level", "explanation", "extracted_entities"}
-    assert result["risk_level"] in ("safe", "risky", "high risk")
-    assert isinstance(result["explanation"], str) and result["explanation"]
+
+    assert set(result.keys()) == {
+
+        "risk_level",
+
+        "explanation",
+
+        "extracted_entities",
+
+    }
+
+    assert result["risk_level"] in (
+
+        "safe",
+
+        "risky",
+
+        "high risk",
+
+    )
+
+    assert isinstance(result["explanation"], str)
+
+    assert isinstance(
+
+        result["extracted_entities"],
+
+        dict,
+
+    )
+
     assert "domain" in result["extracted_entities"]
 
+    assert isinstance(
+
+        result["extracted_entities"]["domain"],
+
+        str,
+
+    )
+
+
+# ==========================================================
+# Domain Extraction
+# ==========================================================
+
+def test_domain_extraction():
+
+    result = check_link_rules(
+        "https://www.paytm.com/pay"
+    )
+
+    assert (
+        result["extracted_entities"]["domain"]
+        == "paytm.com"
+    )
+
+
+# ==========================================================
+# Empty URL
+# ==========================================================
+
+def test_empty_url():
+
+    result = check_link_rules("")
+
+    assert result["risk_level"] == "risky"
+
+
+# ==========================================================
+# Manual Execution
+# ==========================================================
 
 if __name__ == "__main__":
-    # Allows running directly with `python3 test_rules.py` without pytest
-    print("\n--- Known-bad URLs ---")
+
+    print("\n========== BAD URL TESTS ==========\n")
+
     for url, reason in KNOWN_BAD:
-        r = check_link_rules(url)
-        status = "PASS" if r["risk_level"] in ("risky", "high risk") else "FAIL"
-        print(f"[{status}] {url}\n        -> {r}\n")
 
-    print("--- Known-good URLs ---")
+        result = check_link_rules(url)
+
+        passed = result["risk_level"] in (
+
+            "risky",
+
+            "high risk",
+
+        )
+
+        print(
+            f"[{'PASS' if passed else 'FAIL'}] "
+            f"{url}"
+        )
+
+        print(
+            f"Reason      : {reason}"
+        )
+
+        print(
+            f"Risk Level  : {result['risk_level']}"
+        )
+
+        print(
+            f"Explanation : {result['explanation']}"
+        )
+
+        print()
+
+    print("\n========== GOOD URL TESTS ==========\n")
+
     for url in KNOWN_GOOD:
-        r = check_link_rules(url)
-        status = "PASS" if r["risk_level"] == "safe" else "FAIL"
-        print(f"[{status}] {url}\n        -> {r}\n")
 
-    print("--- Running Schema Checks ---")
+        result = check_link_rules(url)
+
+        passed = result["risk_level"] == "safe"
+
+        print(
+            f"[{'PASS' if passed else 'FAIL'}] "
+            f"{url}"
+        )
+
+        print(
+            f"Risk Level  : {result['risk_level']}"
+        )
+
+        print(
+            f"Explanation : {result['explanation']}"
+        )
+
+        print()
+
+    print("\n========== SCHEMA TEST ==========\n")
+
     try:
-        test_output_schema()
-        print("[PASS] Schema validated successfully.\n")
-    except AssertionError as e:
-        print(f"[FAIL] Schema mismatch: {e}\n")
 
-    print("All manual checks completed. Verify that there are no [FAIL] lines.")
+        test_output_schema()
+
+        print("PASS - Output schema validated.")
+
+    except AssertionError as e:
+
+        print("FAIL -", e)
+
+    print("\n========== DONE ==========\n")

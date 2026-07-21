@@ -1,36 +1,46 @@
 """
+Owner- Person 2 - Priyanshi Saini
 models.py — Link Shield Data Models
 RakshaSootra AI
 
-Defines the strict schema contract for the Link Shield agent's outputs.
+Defines the strict schema contract for all Link Shield outputs.
+This schema is shared across rule checks, LLM checks, and LangGraph routing.
 """
 
+from typing import Literal
 from pydantic import BaseModel, Field
+
 
 class LinkShieldEntities(BaseModel):
     """
-    Structured entities extracted from the URL logic.
-    Feeds directly into the central fraud network graph.
+    Structured entities extracted from the URL.
+    These entities are later used by the fraud graph.
     """
+
     domain: str = Field(
-        ..., 
-        description="The clean root domain extracted from the URL (e.g., 'hdfccbank.com')."
+        ...,
+        description="Root domain extracted from the URL.",
+        examples=["sbi.co.in"]
     )
+
 
 class LinkShieldVerdict(BaseModel):
     """
-    The unified verdict shape required for the Link Shield agent.
-    Both local rules and LLM checks must return this exact structure.
+    Standard verdict returned by the Link Shield agent.
+    Every execution path (rules or LLM) must return this schema.
     """
-    risk_level: str = Field(
-        ..., 
-        description="Must strictly be: 'safe', 'risky', or 'high risk'."
+
+    risk_level: Literal["safe", "risky", "high risk"] = Field(
+        ...,
+        description="Overall risk classification."
     )
+
     explanation: str = Field(
-        ..., 
-        description="A plain-language, human-readable sentence explaining the verdict."
+        ...,
+        description="Human-readable explanation of why the URL received this verdict."
     )
+
     extracted_entities: LinkShieldEntities = Field(
-        ..., 
-        description="The metadata dictionary containing parsed threat entities."
+        ...,
+        description="Structured entities extracted from the URL."
     )
