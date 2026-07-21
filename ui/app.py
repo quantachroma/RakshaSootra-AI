@@ -30,6 +30,46 @@ st.markdown("""
         padding: 1.2rem;
         border-radius: 6px;
     }
+            /* Smooth fade-in transition when switching tabs */
+    div[role="tabpanel"] {
+        animation: fadeSlideIn 0.35s ease-out;
+    }
+    }
+
+    @keyframes fadeSlideIn {
+        from {
+            opacity: 0;
+            transform: translateY(8px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Smoother tab underline/hover feel */
+    button[data-baseweb="tab"] {
+        transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    /* Metric numbers animate in slightly too, feels more "alive" */
+    div[data-testid="stMetricValue"] {
+        animation: fadeSlideIn 0.4s ease-out;
+    }
+            /* Rounded, consistent button styling */
+    .stButton > button {
+        border-radius: 8px;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .stButton > button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(217, 72, 15, 0.25);
+    }
+
+    /* Softer status/verdict box corners */
+    div[data-testid="stAlert"] {
+        border-radius: 10px;
+    }
     </style>
     """, unsafe_allow_html=True)
 
@@ -78,6 +118,21 @@ def update_fraud_graph(result: dict):
             g.add_edge(report_id, val)
 
 
+ENTITY_COLORS = {
+    "report": "#6B7280",    # gray - report nodes are just connectors
+    "upi": "#1E7A3E",       # green
+    "upi_ids": "#1E7A3E",   # same, in case a teammate used the other key name
+    "phone": "#2563EB",     # blue
+    "phone_numbers": "#2563EB",
+    "domain": "#D9480F",    # saffron
+    "platform": "#B36B00",  # amber
+}
+
+
+def _short_label(text: str, max_len: int = 18) -> str:
+    return text if len(text) <= max_len else text[:max_len - 1] + "…"
+
+
 def render_fraud_graph():
     g = st.session_state.fraud_graph
     if g.number_of_nodes() == 0:
@@ -85,20 +140,39 @@ def render_fraud_graph():
         return
 
     random.seed(42)  # keeps positions consistent across reruns
-    nodes = [
-        Node(id=n, label=n, size=25, color="#D9480F",
-             x=random.randint(-250, 250), y=random.randint(-150, 150))
-        for n in g.nodes()
-    ]
-    edges = [Edge(source=s, target=t, color="#6B7280") for s, t in g.edges()]
+    nodes = []
+    for n, attrs in g.nodes(data=True):
+        node_type = attrs.get("type", "unknown")
+        color = ENTITY_COLORS.get(node_type, "#9CA3AF")
+        size = 15 if node_type == "report" else 25
+        nodes.append(Node(
+            id=n, label=_short_label(n), size=size, color=color,
+            x=random.randint(-250, 250), y=random.randint(-150, 150),
+        ))
+
+    edges = [Edge(source=s, target=t, color="#3A3F4B") for s, t in g.edges()]
     config = Config(width=900, height=550, directed=False, physics=True, backgroundColor="#161b22")
 
     with st.container(border=True):
         agraph(nodes=nodes, edges=edges, config=config)
 
+        st.markdown(
+            """
+            <div style="display:flex; gap:18px; flex-wrap:wrap; padding-top:8px; font-size:12px; color:#9CA3AF;">
+                <span>🟢 UPI ID</span>
+                <span>🔵 Phone</span>
+                <span>🟠 Domain</span>
+                <span>🟤 Platform</span>
+                <span>⚪ Report</span>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
 
-def render_hotspot_map():
-    hotspots = pd.DataFrame([
+
+@st.cache_data
+def get_hotspot_data():
+    return pd.DataFrame([
         {"city": "Delhi", "lat": 28.6139, "lon": 77.2090, "reports": 34},
         {"city": "Mumbai", "lat": 19.0760, "lon": 72.8777, "reports": 27},
         {"city": "Bengaluru", "lat": 12.9716, "lon": 77.5946, "reports": 19},
@@ -107,23 +181,35 @@ def render_hotspot_map():
         {"city": "Ahmedabad", "lat": 23.0225, "lon": 72.5714, "reports": 9},
     ])
 
+def render_hotspot_map():
     layer = pdk.Layer(
         "ScatterplotLayer",
-        data=hotspots,
+        data=get_hotspot_data(),
         get_position=["lon", "lat"],
         get_radius="reports * 1500",
-        get_fill_color=[217, 72, 15, 160],  # saffron, semi-transparent
+        get_fill_color=[217, 72, 15, 160],
         pickable=True,
     )
+    text_layer = pdk.Layer(
+        "TextLayer",
+        data=get_hotspot_data(),
+        get_position=["lon", "lat"],
+        get_text="city",
+        get_size=14,
+        get_color=[255, 255, 255, 200],
+        get_pixel_offset=[0, -20],
+    )
 
-    view_state = pdk.ViewState(latitude=22.0, longitude=79.0, zoom=4, pitch=0)
+    view_state = pdk.ViewState(latitude=21.5, longitude=80.5, zoom=3.6, pitch=0)
 
-    st.pydeck_chart(pdk.Deck(
-        layers=[layer],
-        initial_view_state=view_state,
-        map_style="mapbox://styles/mapbox/dark-v10",
-        tooltip={"text": "{city}: {reports} reports"},
-    ))
+    with st.container(border=True):
+        st.pydeck_chart(pdk.Deck(
+            layers=[layer, text_layer],
+            initial_view_state=view_state,
+            map_style="mapbox://styles/mapbox/dark-v10",
+            tooltip={"text": "{city}: {reports} reports"},
+        ))
+        st.caption("Static demo data — live geolocation planned for future phase")
 
 
 def main():
@@ -160,7 +246,6 @@ def main():
                 # Run LangGraph
                 result = rakshasootra_router.invoke(state)
                 update_fraud_graph(result)
-            
                 st.write(f"Routing to {result['input_type'].upper()} specialist...")
                 status.update(label="Scan Complete!", state="complete", expanded=False)
 
