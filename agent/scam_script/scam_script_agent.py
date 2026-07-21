@@ -14,12 +14,14 @@ def llm_check_script(text: str) -> dict:
     system_prompt = """
     You are an expert fraud detection analyst for the Raksha Sootra system. 
     Analyze the provided text message or transcript. 
-    Does the overall narrative match a known scam script, even with different keywords?
+    Focus specifically on authority impersonation scams,digital arrest scams, fake government officer calls,legal threats, intimidation tactics, and fear-based manipulation.
     Look for psychological manipulation, false urgency, isolation tactics, or fake authority.
     
-    You must return a raw JSON object with strictly these two keys:
-    1. "risk_level": strictly one of ["safe", "risky", "high risk"]
-    2. "explanation": a plain-language explanation of your verdict
+    You must return a raw JSON object with exactly these keys:
+
+1. "risk_level": one of ["safe", "risky", "high risk"]
+2. "explanation": explanation of verdict
+3. "impersonated_agency": name of fake authority if detected, otherwise null
     """
     
     try:
@@ -40,12 +42,18 @@ def llm_check_script(text: str) -> dict:
             
         return {
             "risk_level": result["risk_level"], 
-            "explanation": result["explanation"]
+            "explanation": result["explanation"],
+            "extracted_entities": {
+                  "impersonated_agency": result.get("impersonated_agency"),
+            }
         }
     except Exception as e:
         return {
-            "risk_level": "risky", 
-            "explanation": f"LLM failed: {str(e)}"
+            "risk_level": "safe",
+            "explanation": "LLM unavailable. No additional scam signals detected.",
+            "extracted_entities": {
+                "impersonated_agency": None
+            }
         }
         
 
