@@ -1,5 +1,5 @@
 🛡️ Member Documentation: Platform Architecture & Intelligence Orchestration
-Owner: [Your Name] (Person 1)
+Owner: Shraddha Tyagi (Person 1)
 Modules: LangGraph Router, Streamlit Platform, Shared SQLite Schema, & Fraud Entity Graph (LEA Intelligence)
 Project: RakshaSootra AI
 1. Overview & Key Contributions
