@@ -61,7 +61,6 @@ def check_link_rules(url: str) -> dict:
     """
     Executes fast-fail pattern validations against structural fraud vectors.
     """
-
     domain = _extract_domain(url)
     entities = {"domain": domain}
 

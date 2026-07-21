@@ -71,7 +71,7 @@ def check_script_rules(text: str) -> dict:
     # 1. PRIORITY 1: HIGH RISK (Direct Extortion or Multi-layered Digital Arrest Signature)
     if has_financial_extortion or (has_digital_arrest_tactics and matched_agency):
         return {
-            "risk_level": "high risk",
+            "risk_level": "high_risk",
             "explanation": "Flagged extreme extortion pattern matching known high-pressure 'Digital Arrest' mechanics or direct financial demands to circumvent arrest.",
             "extracted_entities": entities
         }
