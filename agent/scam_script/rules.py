@@ -12,7 +12,7 @@ import re
 # High-profile agencies frequently utilized by domestic extortion syndicates
 IMPERSONATED_AGENCIES = {
     "CBI": r"\b(cbi|central bureau of investigation)\b",
-    "ED": r"\b(ed|enforcement directorate)\b",
+    "ED": r"\b(e\.d\.|enforcement directorate)\b",
     "TRAI": r"\b(trai|telecom regulatory authority)\b",
     "MUMBAI_POLICE": r"\b(mumbai police|crime branch)\b",
     "CUSTOMS": r"\b(customs department|customs officer|ncb)\b",
@@ -47,13 +47,66 @@ FINANCIAL_EXTORTION = (
     "avoid immediate arrest",
 )
 
+MONEY_REQUESTS = (
+    "send money",
+    "transfer money",
+    "pay immediately",
+    "urgent payment",
+    "deposit amount",
+)
+
+URGENCY_MARKERS = (
+    "immediately",
+    "urgent",
+    "within 24 hours",
+    "right now",
+    "final warning",
+)
+
+# Otp fraud
+OTP_REQUESTS = (
+    "share otp",
+    "tell me your otp",
+    "verification code",
+    "one time password",
+)
+
+BANKING_THREATS = (
+    "account blocked",
+    "bank account suspended",
+    "kyc update",
+    "verify your account",
+)
+
+REWARD_SCAMS = (
+    "you won",
+    "lottery",
+    "prize money",
+    "claim reward",
+)
+
+INVESTMENT_SCAMS = (
+    "guaranteed return",
+    "double your money",
+    "crypto investment",
+    "risk free profit",
+)
+
 def check_script_rules(text: str) -> dict:
     """
     Executes fast token scanning to intercept digital arrest setups.
     Returns a unified dict mapping to the team schema contract.
     """
-    text_lower = text.lower()
     entities = {"impersonated_agency": None}
+     # Handle empty input safely
+    if not text:
+        return {
+            "risk_level": "safe",
+            "explanation": "No text provided for analysis.",
+            "extracted_entities": entities
+        }
+    text_lower = text.lower()
+    
 
     # Identify if a specific regulatory/law enforcement agency profile matches
     matched_agency = None
@@ -71,7 +124,7 @@ def check_script_rules(text: str) -> dict:
     # 1. PRIORITY 1: HIGH RISK (Direct Extortion or Multi-layered Digital Arrest Signature)
     if has_financial_extortion or (has_digital_arrest_tactics and matched_agency):
         return {
-            "risk_level": "high_risk",
+            "risk_level": "high risk",
             "explanation": "Flagged extreme extortion pattern matching known high-pressure 'Digital Arrest' mechanics or direct financial demands to circumvent arrest.",
             "extracted_entities": entities
         }

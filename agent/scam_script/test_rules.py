@@ -3,7 +3,7 @@ test_rules.py — Scam Script Checker rule-check tests
 RakshaSootra AI
 
 Run with:
-    python3 -m pytest test_rules.py -v
+    python3 -m pytest agent/scam_script/test_rules.py -v
 or:
     python3 test_rules.py
 """
