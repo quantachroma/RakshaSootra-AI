@@ -23,7 +23,15 @@ TARGET_DOMAINS = (
 
 TYPOSQUAT_MIN_RATIO = 0.70
 TYPOSQUAT_MAX_RATIO = 0.99
-
+# --- ADD THIS FIX FOR FULL URL PATH SCANNING ---
+    url_lower = url.lower()
+    for keyword in ["kyc-update", "otp-verify", "account-credited-notice", "win-amount"]:
+        if keyword in url_lower:
+            return {
+                "risk_level": "risky",
+                "explanation": "URL contains anomalous generic top-level domains or high-pressure phishing phrases.",
+                "extracted_entities": {"domain": domain}
+            }
 SUSPICIOUS_TLDS = (".xyz", ".top", ".club", ".win", ".bid", ".loan", ".click", ".site", ".online")
 
 SUSPICIOUS_KEYWORDS = (
@@ -59,7 +67,7 @@ def check_link_rules(url: str) -> dict:
     # 1. Raw IP Red Flag (High Risk)
     if _is_raw_ip(domain):
         return {
-            "risk_level": "high_risk",
+            "risk_level": "high risk",
             "explanation": "Flagged raw IP address structure instead of a registered domain registry record.",
             "extracted_entities": entities
         }
@@ -71,7 +79,7 @@ def check_link_rules(url: str) -> dict:
         ratio = SequenceMatcher(None, domain, target).ratio()
         if TYPOSQUAT_MIN_RATIO <= ratio <= TYPOSQUAT_MAX_RATIO:
             return {
-                "risk_level": "high_risk",
+                "risk_level": "high risk",
                 "explanation": f"Identified severe structural similarity typosquat impersonating trusted domain '{target}'.",
                 "extracted_entities": entities
             }

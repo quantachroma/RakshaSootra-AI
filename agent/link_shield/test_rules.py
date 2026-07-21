@@ -8,8 +8,7 @@ or, if pytest isn't installed:
     python3 test_rules.py
 """
 
-from rules import check_link_rules
-
+from agent.link_shield.rules import check_link_rules
 # ---------------------------------------------------------------------------
 # 5 known-bad URLs (should NOT come back "safe")
 # ---------------------------------------------------------------------------
