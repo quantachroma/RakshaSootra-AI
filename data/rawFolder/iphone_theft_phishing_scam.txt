@@ -1,0 +1,21 @@
+ADVISORY: TAU/ADV/015 (Dated: 5th May 2026)[cite: 27]
+Subject: iPhone Users Targeted in Hybrid Cybercrime - Theft & Unauthorized Access[cite: 27]
+Issued By: National Cybercrime Threat Analytics Unit of 14C[cite: 27]
+
+Overview:
+* A sophisticated phishing campaign targets Apple iPhone users whose devices were lost or stolen and are currently held by perpetrators[cite: 27].
+* Attackers impersonate Apple Support and exploit victim urgency via fraudulent SMS messages resembling official "Find My iPhone" notifications[cite: 27].
+* Messages contain phishing links redirecting users to counterfeit Apple login pages designed to harvest Apple ID credentials and OTPs[cite: 27].
+
+Modus Operandi:
+* Target Selection: Perpetrators target individuals whose iPhones were recently lost or stolen while keeping physical possession of the devices[cite: 27].
+* Phishing SMS Delivery: Victims receive fake SMS alerts from numeric headers claiming the device has been located or demanding urgent data erasure[cite: 27].
+* Fake Portal & Harvesting: Links direct users to deceptive sites mimicking official Apple/iCloud pages to steal credentials, 2FA codes, and OTPs[cite: 27].
+* Account & Device Takeover: Attackers gain full iCloud control, remove the Apple ID from the stolen phone, disable "Find My iPhone," bypass Activation Lock, and monetize the device[cite: 27].
+
+Recommended Precautions:
+* Avoid clicking links received via SMS, especially from international or numeric headers, and check URLs thoroughly[cite: 27].
+* Request blocking of lost/stolen mobile phones through the CEIR portal[cite: 27].
+* Never enter OTPs on unverified websites or disclose them to anyone[cite: 27].
+* Use official Apple services (https://www.icloud.com/find) and keep Two-Factor Authentication (2FA) active[cite: 27].
+* Report phishing attempts immediately to cybercrime.gov.in or call 1930[cite: 27].

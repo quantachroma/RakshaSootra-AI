@@ -1,0 +1,21 @@
+Cyber Crime Information - 160 (Dated: August 29, 2022)[cite: 23]
+Subject: Fraudsters Sending Fake Job Offer SMSs to Perpetrate Cyber Crime[cite: 23]
+Issued By: Indian Cyber Crime Coordination Centre (14C), MHA[cite: 23]
+
+Threat Summary:
+* Fraudsters run online advertisements and send SMSs offering high-paying part-time jobs allowing individuals to make large sums of money working from home with minimal effort[cite: 23].
+* Job scams involve fake employers or recruiters offering attractive employment opportunities that require victims to pay advance fees[cite: 23].
+* These fraudulent messages aim to siphon off victims' money and harvest their sensitive personal information[cite: 23].
+
+Modus Operandi:
+* Scammers send text messages such as "Your CV has been selected for a job" or "Accept this job and earn daily salary"[cite: 23].
+* Messages are often sent using an SMS-Header to appear credible and include "wa.me" links for WhatsApp click-to-chat functionality[cite: 23].
+* Clicking the link initiates a WhatsApp chat where victims are directed to malicious registration websites to capture their personal data[cite: 23].
+* Victims are subsequently instructed to deposit money into accounts under the guise of a verification and registration process[cite: 23].
+
+Suggestions:
+* Avoid tempting job offers sent via text messages or emails from unknown senders[cite: 23].
+* Scrutinize job-offering companies online using keywords like "scam," "fraud," or "complaint" alongside the company name[cite: 23].
+* Never make advance payments without authenticating the employer[cite: 23].
+* Check SMS-Headers to confirm the authenticity of job offers[cite: 23].
+* Watch out for urgent requests and report incidents on cybercrime.gov.in or follow @CyberDost[cite: 23].

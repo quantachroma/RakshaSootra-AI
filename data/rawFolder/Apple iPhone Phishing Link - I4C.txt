@@ -1,0 +1,21 @@
+ADVISORY
+TAU/ADV/015 | Dated: 5th May 2026
+MINISTRY OF HOME AFFAIRS | Indian Cyber Crime Coordination Centre (I4C) - NCTAU
+iPhone users targeted in hybrid cybercrime - theft & unauthorized access[cite: 16]
+
+The National Cybercrime Threat Analytics Unit (NCTAU) of I4C identified a sophisticated phishing campaign targeting Apple iPhone users whose devices have been lost or stolen and are in the possession of perpetrators[cite: 16]. Perpetrators impersonate Apple Support and exploit victims' urgency via fraudulent SMS messages containing phishing links that redirect to counterfeit iCloud login pages to steal Apple ID credentials and OTPs[cite: 16].
+
+MODUS OPERANDI:
+1. Target Selection: Individuals whose iPhones have recently been lost or stolen, where attackers are in physical possession of the devices[cite: 16].
+2. Phishing SMS Delivery: Fraudulent SMS impersonating Apple Support or "Find My Device" (mostly via numeric SMS headers) claiming the device was switched on or located, urging users to click a link[cite: 16].
+3. Fake Apple Support Portal: Redirects users to fraudulent websites mimicking official Apple Support or iCloud login pages[cite: 16].
+4. Credential & OTP Harvesting: Users enter their Apple ID credentials followed by the One-Time Password (OTP) / 2FA code[cite: 16].
+5. Account & Device Takeover: Perpetrators gain access to iCloud, remove the linked Apple ID from the stolen device, disable "Find My iPhone" and Activation Lock, allowing the device to be resold or reused[cite: 16].
+
+RECOMMENDATIONS:
+• Avoid clicking links received via SMS (especially international headers) and check URLs carefully[cite: 16].
+• Request blocking lost/stolen mobiles at the CEIR Portal[cite: 16].
+• Do not enter OTPs on unverified websites or disclose them to anyone[cite: 16].
+• Use Apple's official "Find Devices" service page (https://www.icloud.com/find)[cite: 16].
+• Do not remove devices from your Apple ID without verification; keep "Find My iPhone" active and enable 2FA[cite: 16].
+• Report phishing attempts at https://cybercrime.gov.in/ or call 1930[cite: 16].

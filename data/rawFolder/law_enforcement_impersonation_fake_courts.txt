@@ -1,0 +1,17 @@
+DOCUMENT ID: CBI-SC-ADV-006
+TITLE: Advisory Against Fake Court Hearings, Summons, and Law Enforcement Impersonation
+ISSUING AGENCY: Central Bureau of Investigation (CBI) & Supreme Court Cyber Cell
+DATE OF ISSUE: Current Operating Version
+
+1. OVERVIEW OF THE FRAUD
+Scammers impersonate judges, Supreme Court officials, CBI directors, or custom officials, sending fabricated notices, summons, or video-link court hearings to extort money from targets.
+
+2. MODUS OPERANDI
+- Creation of Fake Setups: Fraudsters use studio setups resembling courtrooms or police stations during video calls to intimidate victims.
+- Threat of Imminent Action: Targets are told that a non-bailable warrant or Interpol red notice has been issued against them for parcel contraband or financial crimes.
+- Settlement Extortion: Victims are forced to pay immediate "court fees," "bail bonds," or "settlement amounts" to avoid arrest.
+
+3. PREVENTIVE MEASURES & OFFICIAL STANCE
+- Courts and law enforcement agencies never conduct judicial hearings, trials, or settlement negotiations over WhatsApp, Skype, or phone calls.
+- Legitimate legal notices are served through official postal channels or registered court process servers, never via direct messaging apps.
+- Verify any claims directly through official district court or agency websites.

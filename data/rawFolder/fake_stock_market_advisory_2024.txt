@@ -1,0 +1,13 @@
+Title: MHA I4C Advisory - Beware of Fake Stock Market Investment Websites and Apps (April 2024)
+
+With the rising adoption of digital platforms like Instagram, Facebook, WhatsApp, and Telegram, cybercriminals are increasingly luring citizens into fake stock market investments leading to severe financial losses.
+
+Modus Operandi:
+- Sponsored advertisements featuring deepfake videos and images of prominent individuals are run on social media to redirect users to fraudulent WhatsApp or Telegram trading groups.
+- Fraudsters share links to fake trading applications (APKs or unofficial app store links) and provide Indian mule bank accounts for depositing funds.
+- Initial small payouts are simulated to build trust, after which communication is abruptly cut off once large sums are deposited.
+
+Precautions:
+- Exercise extreme caution regarding sponsored investment ads on social media.
+- Never share sensitive financial details or login credentials with unverified entities.
+- Verify whether an Investment Advisor is officially registered with SEBI before engaging. Report cyber frauds at cybercrime.gov.in or call 1930.

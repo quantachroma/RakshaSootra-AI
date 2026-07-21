@@ -1,0 +1,23 @@
+ADVISORY
+TAU/ADV/013 | Dated 20th April 2026
+MINISTRY OF HOME AFFAIRS | Indian Cyber Crime Coordination Centre (I4C)
+Rising crypto scams targeting Trust wallet users[cite: 15]
+
+Trust Wallet is a non-custodial crypto wallet app that allows users to store, send, receive, and manage cryptocurrencies across multiple blockchains while maintaining full control over their private keys, with over 5 Crore Android users globally[cite: 15]. 
+I4C's National Cybercrime Threat Analytics Unit (NCTAU) has observed a significant rise in complaints on the National Cyber Crime Reporting Portal (NCRP) linked with cryptocurrency-related cyber frauds involving or targeting Trust Wallet users[cite: 15].
+
+MODUS OPERANDI:
+1. Scammers initiate contact via P2P platforms (e.g., Binance) and shift communication to WhatsApp/Telegram to avoid platform monitoring[cite: 15].
+2. Fake Crypto Verification: Victims are falsely informed that "crypto asset verification" is required to complete the transaction[cite: 15].
+3. Authorization: Users are redirected to impersonating websites / fake wallet verification pages (e.g., testwallet.site, beptest.org, bep20test.com) where victims are instructed to connect their Trust Wallet[cite: 15].
+4. Mandate: Malicious links prompt users to approve smart contract permissions, unknowingly granting full access to wallet assets[cite: 15].
+5. Wallet Drain: Once permissions are granted, wallet drainer scripts automatically transfer funds without further user interaction/approval[cite: 15].
+
+POTENTIAL IMPACT:
+Direct Financial Loss: Irreversible loss of crypto assets through unauthorized transfers due to lack of central authority[cite: 15].
+
+RECOMMENDATIONS:
+• Disconnect dApps from Trust Wallet settings to prevent unauthorized transactions if affected[cite: 15].
+• Beware of phishing, fake dApps, never share seed phrases, and verify receiver wallet addresses[cite: 15].
+• Always verify website authenticity and pay attention to Critical Risk Alert warning messages[cite: 15].
+• Report cybercrime incidents at https://cybercrime.gov.in or call 1930[cite: 15].

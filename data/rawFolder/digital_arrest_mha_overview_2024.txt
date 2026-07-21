@@ -1,0 +1,9 @@
+Title: Ministry of Home Affairs Overview on Digital Arrest Scams (December 2024)
+
+'Police' and 'Public Order' are State subjects under the Seventh Schedule of the Constitution of India, making States and UTs primarily responsible for preventing, detecting, investigating, and prosecuting cyber crimes. The Central Government supplements these efforts through advisories and financial assistance. 
+
+The Indian Cyber Crime Coordination Centre (I4C), set up under the Ministry of Home Affairs, handles cybercrimes comprehensively. Key actions taken include:
+- Launching extensive public awareness campaigns via print, electronic media, Delhi Metro announcements, and social media (@CyberDost).
+- Proactively identifying and blocking over 1,700 Skype IDs and 59,000 WhatsApp accounts used for digital arrests.
+- Partnering with Telecom Service Providers (TSPs) to block international spoofed calls displaying Indian mobile numbers.
+- Launching the National Cyber Crime Reporting Portal (cybercrime.gov.in) and the Citizen Financial Cyber Fraud Reporting and Management System alongside the 1930 toll-free helpline, which has saved over Rs. 3,431 crores in fraudulent transfers.

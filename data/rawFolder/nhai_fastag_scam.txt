@@ -1,0 +1,20 @@
+ADVISORY: TAU/ADV/010 (Dated: 11th February 2026)[cite: 25]
+Subject: NHAI FASTag Annual Pass Impersonation Scam[cite: 25]
+Issued By: National Cybercrime Threat Analytics Unit (NCTAU) of 14C[cite: 25]
+
+Overview:
+* Phishing websites fraudulently impersonate the National Highways Authority of India (NHAI) FASTag Annual Pass service[cite: 25].
+* These fraudulent websites use paid Google Ads and advanced SEO techniques to rank #1 on Google Search for keywords like "fastag annual pass" and "fastag recharge"[cite: 25].
+* They pose a high financial fraud risk to unsuspecting motorists[cite: 25].
+
+Modus Operandi:
+* Impersonation: Websites mimic the branding, layout, logos, and content of official NHAI services[cite: 25].
+* Search Engine Manipulation: Advanced SEO and sponsored Google Ads maximize visibility and credibility[cite: 25].
+* Deceptive Payment Mechanism: Users are prompted to pay for a fake FASTag Annual Pass via QR codes that direct funds into personal mule bank accounts[cite: 25].
+* Rotation of Mule Accounts: Accounts linked to payment pages are rotated periodically to evade detection and law enforcement tracing[cite: 25].
+
+Precautions:
+* Access FASTag annual pass services strictly through the official NHAI website or the Rajmarg Yatra app (available on Google Play Store and Apple App Store)[cite: 25].
+* Carefully check URLs before submitting personal or financial details[cite: 25].
+* Remember that high search rankings or sponsored ad tags do not guarantee legitimacy[cite: 25].
+* Report unauthorized transactions or phishing websites immediately to cybercrime.gov.in or call 1930[cite: 25].

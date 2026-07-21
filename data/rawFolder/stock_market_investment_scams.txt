@@ -1,0 +1,17 @@
+DOCUMENT ID: SEBI-I4C-ADV-002
+TITLE: Advisory Against Fraudulent Trading Platforms and Stock Market Scams
+ISSUING AGENCY: Securities and Exchange Board of India (SEBI) & I4C
+DATE OF ISSUE: Current Operating Version
+
+1. OVERVIEW OF THE FRAUD
+Fraudsters are luring investors through social media advertisements (WhatsApp, Telegram, Instagram, YouTube) promising guaranteed, abnormally high returns on stock market investments, IPO allotments, and unauthorized Foreign Institutional Trading (FII) accounts.
+
+2. MODUS OPERANDI
+- Fake Applications: Victims are tricked into downloading malicious mobile apps or registering on fraudulent web portals that mimic legitimate brokerage platforms (e.g., fake versions of established financial apps).
+- Illusion of Profit: The fake dashboards display exorbitant daily gains, encouraging victims to invest increasingly larger sums of money.
+- Withdrawal Block: When users attempt to withdraw their funds, they are hit with heavy "taxes," "processing fees," or "commission charges," after which the scammers block communication and vanish.
+
+3. PREVENTIVE MEASURES & OFFICIAL STANCE
+- SEBI registered intermediaries never offer guaranteed returns or operate through unauthorized personal bank accounts/payment gateways.
+- Verify the registration status of any broker or advisory service on the official SEBI website before investing.
+- Report fraudulent investment groups and apps immediately to national cyber authorities.

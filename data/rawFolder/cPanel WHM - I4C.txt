@@ -1,0 +1,26 @@
+ADVISORY
+TAU/ADV/016 | Dated: 15th June 2026
+MINISTRY OF HOME AFFAIRS | Indian Cyber Crime Coordination Centre (I4C) - NCTAU
+Ransomware Groups Targeting cPanel & WHM web hosting control panel[cite: 17]
+
+A serious security flaw (CVE-2026-41940, CVSS score 9.8) has been discovered in cPanel and WHM Linux-based web hosting control panel software[cite: 17]. This authentication bypass vulnerability allows hackers to access server administration panels without any password or login, and is actively exploited to deploy ransomware[cite: 17].
+
+AFFECTED COMPONENTS:
+• Vendor: WebPros (cPanel)[cite: 17]
+• Product Name: cPanel & WHM (Web Host Manager), DNSOnly cPanel version, and WP2 (managed WordPress platform)[cite: 17]
+• Affected Versions: All versions after 11.40 until April 28, 2026 patches[cite: 17]
+• Patched Versions: 11.86.0.41 and newer[cite: 17]
+
+POTENTIAL IMPACT:
+• Unauthorized Administrative Access without valid credentials[cite: 17]
+• Ransomware Deployment, web shells, malware, or crypto miners[cite: 17]
+• Website Defacement, modification, or deletion[cite: 17]
+• Data Theft, service disruption, and lateral movement to connected systems[cite: 17]
+
+RECOMMENDATIONS:
+• Apply Emergency Security Updates to the latest patched version[cite: 17].
+• Restrict Administrative Access using firewalls, dedicated Management DMZ, or secure VPN to trusted IPs[cite: 17].
+• Enable Multi-Factor Authentication (MFA) for privileged accounts[cite: 17].
+• Maintain recent offline backups of websites, databases, and server configurations[cite: 17].
+• Harden server configuration, disable unused services/ports, and keep PHP/plugins updated[cite: 17].
+• Report incidents at https://cybercrime.gov.in or call 1930[cite: 17].

@@ -1,0 +1,17 @@
+DOCUMENT ID: I4C-ADV-004
+TITLE: Advisory on Part-Time Job Scams, YouTube Like/Subscribe Frauds, and Pre-Paid Tasks
+ISSUING AGENCY: Indian Cyber Crime Coordination Centre (I4C)
+DATE OF ISSUE: Current Operating Version
+
+1. OVERVIEW OF THE FRAUD
+Fraudsters send unsolicited WhatsApp or Telegram messages offering easy part-time work from home, such as liking YouTube videos, rating Google Maps locations, or writing product reviews for daily payouts.
+
+2. MODUS OPERANDI
+- Initial Hook: Victims are paid small amounts initially for simple tasks to build trust.
+- Pre-Paid Tasks: Scammers then introduce high-return "pre-paid task packages" or crypto investment modules requiring upfront deposits.
+- Escalating Demands: Once the victim deposits money, fake negative balances or system errors are displayed, demanding additional payments to unlock previous earnings.
+
+3. PREVENTIVE MEASURES & OFFICIAL STANCE
+- Genuine companies never ask candidates to pay money upfront to secure a job or receive daily earnings.
+- Exercise extreme caution when responding to unsolicited work-from-home offers from unknown international or domestic numbers.
+- File complaints on the cybercrime portal with transaction screenshots and suspect account details.

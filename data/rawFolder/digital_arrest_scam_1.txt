@@ -1,0 +1,22 @@
+ADVISORY: TAU/ADV/003 (Dated: 06 March 2025)[cite: 22]
+Subject: "DIGITAL ARREST" SCAM[cite: 22]
+Issued By: Indian Cyber Crime Coordination Centre (14C), Ministry of Home Affairs[cite: 22]
+
+Overview:
+* Numerous complaints have been reported on the National Cyber Crime Reporting Portal (NCRP) regarding intimidation, blackmail, extortion, and "Digital Arrests" by cyber criminals[cite: 22].
+* Criminals pose as Police Authorities, Central Bureau of Investigation (CBI), Narcotics Department, Reserve Bank of India (RBI), Enforcement Directorate, and other law enforcement agencies[cite: 22].
+* This is an organized online economic crime operated by cross-border crime syndicates that has caused severe financial losses to victims[cite: 22].
+
+Modus Operandi:
+* IVR Calling & Impersonation: Scammers call potential victims spoofing official numbers and posing as representatives of police, CBI, RBI, telecom, or enforcement departments[cite: 22].
+* Intimidation: Victims are falsely accused of involvement in illegal activities like sending/receiving contraband (drugs, fake passports, SIM cards via FedEx/DHL), money laundering, or terrorist activities, or having a loved one caught in an accident[cite: 22].
+* Digital Confinement: Victims are subjected to "digital arrest," forced to stay on video calls via Skype or WhatsApp with scammers who set up fake police stations to mimic real law enforcement[cite: 22].
+* Demand for Money: Criminals extort money under the guise of settling the false legal cases or preventing exposure[cite: 22].
+
+Precautions:
+* Real law enforcement agencies will never execute a "digital arrest"[cite: 22].
+* There is no legal concept of "Digital Arrest" under Indian law[cite: 22].
+* Never share personal or financial information over phone calls, emails, or messaging apps without proper verification[cite: 22].
+* Verify caller identities directly with your nearest police station before taking action[cite: 22].
+* Consult friends and relatives before transferring any money[cite: 22].
+* Report cyber frauds immediately at www.cybercrime.gov.in or by calling 1930, and follow @cyberdost on social media[cite: 22].
