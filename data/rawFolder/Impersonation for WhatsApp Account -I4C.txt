@@ -1,0 +1,18 @@
+ADVISORY
+TAU/ADV/017 | Dated: 22nd June 2026
+MINISTRY OF HOME AFFAIRS | Indian Cyber Crime Coordination Centre (I4C) - NCTAU
+Regulatory and Executive Impersonation for WhatsApp Account Takeover using Malicious Windows Executables and High Value Financial Fraud ("Boss Scam")[cite: 18]
+
+MODUS OPERANDI:
+1. Initial Contact: Fraudsters contact high-ranking officials or CEOs via email or WhatsApp impersonating regulators like the Reserve Bank of India (RBI), claiming urgent regulatory violations[cite: 18].
+2. Payload Delivery: Messages contain a compressed `.zip` archive with a malicious executable (`.exe`) and a Dynamic Link Library (`.dll`) file, which executives often forward to finance officers[cite: 18].
+3. Device & Session Takeover: Extracting and executing the file initiates a Trojan dropper, establishing persistence and hijacking active Web WhatsApp session tokens[cite: 18].
+4. Transfer Instruction: Fraudsters use the compromised WhatsApp account to instruct finance/accounts employees to make immediate payments to mule bank accounts[cite: 18].
+5. Contact Manipulation Variant: Attackers may modify the device's contact list, saving an attacker-controlled number under the name "CEO" to direct funds[cite: 18].
+
+RECOMMENDATIONS & PRECAUTIONS:
+• Finance departments must verify urgent financial transaction requests based solely on WhatsApp/email via direct voice call or in-person confirmation[cite: 18].
+• Do not install executables from unknown sources; regulators like RBI will never distribute mandatory updates/fixes via WhatsApp[cite: 18].
+• Enforce strict software restriction policies (SRP) to block unknown `.exe` and `.dll` execution from user profile directories[cite: 18].
+• Regularly audit authorized devices (Settings > Linked Devices) and log out of unmonitored Web WhatsApp sessions[cite: 18].
+• Report fraud incidents on 1930 or www.cybercrime.gov.in[cite: 18].

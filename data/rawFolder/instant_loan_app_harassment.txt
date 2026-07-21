@@ -1,0 +1,17 @@
+DOCUMENT ID: RBI-I4C-ADV-005
+TITLE: Advisory on Unauthorized Digital Lending Apps and Harassment Practices
+ISSUING AGENCY: Reserve Bank of India (RBI) & Cyber Crime Division
+DATE OF ISSUE: Current Operating Version
+
+1. OVERVIEW OF THE FRAUD
+Unregistered and illegal digital lending applications offer instant, paperless short-term loans but trap borrowers in predatory debt cycles and severe harassment.
+
+2. MODUS OPERANDI
+- Invasive Permissions: Upon installation, these apps harvest unauthorized access to the user's contacts, photo gallery, media files, and location data.
+- Exorbitant Charges: Hidden fees, excessive processing charges, and undisclosed high-interest rates lead to massive debt accumulation within days.
+- Public Shaming and Blackmail: When borrowers default or seek time, recovery agents use morphed images, abusive messages, and broadcast threats to the borrower's entire contact list.
+
+3. PREVENTIVE MEASURES & OFFICIAL STANCE
+- Borrow exclusively from regulated entities such as banks and Non-Banking Financial Companies (NBFCs) registered with the RBI.
+- Verify the list of authorized digital lending apps published on the official RBI website.
+- Do not grant excessive permissions to mobile applications, especially access to contacts and media storage.

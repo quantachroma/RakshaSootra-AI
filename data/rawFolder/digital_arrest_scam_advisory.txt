@@ -1,0 +1,17 @@
+DOCUMENT ID: MHA-I4C-ADV-001
+TITLE: Advisory on Digital Arrest Scams and Cyber Extortion
+ISSUING AGENCY: Indian Cyber Crime Coordination Centre (I4C), Ministry of Home Affairs (MHA), Government of India
+DATE OF ISSUE: Current Operating Version
+
+1. OVERVIEW OF THE FRAUD
+Cybercriminals are increasingly impersonating law enforcement officers (such as CBI, Narcotics Control Bureau, Customs, ED, or local police) via video calls on Skype, WhatsApp, or Zoom. They claim that the victim's Aadhaar card, mobile number, or bank account has been linked to illegal activities, drug trafficking, or money laundering.
+
+2. MODUS OPERANDI
+- Intimidation: Victims are shown fake arrest warrants, Supreme Court orders, or official-looking identity cards.
+- Isolation ("Digital Arrest"): Victims are coerced into staying on continuous video calls, forbidden from contacting family members, lawyers, or leaving their homes under the pretext of an ongoing "secret investigation."
+- Financial Extortion: Fearful targets are manipulated into transferring their life savings into "safe custody" government accounts or RBI verification accounts provided by the fraudsters.
+
+3. PREVENTIVE MEASURES & OFFICIAL STANCE
+- Law enforcement agencies NEVER conduct arrests, interrogations, or financial verification via video calls, Skype, or WhatsApp.
+- No government agency asks citizens to transfer money for verification or clearance of charges.
+- Immediately disconnect suspicious video calls and report the incident at www.cybercrime.gov.in or call the national helpline 1930.

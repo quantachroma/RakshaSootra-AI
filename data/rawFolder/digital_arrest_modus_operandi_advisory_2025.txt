@@ -1,0 +1,13 @@
+Title: MHA I4C Advisory - Digital Arrest Scams Modus Operandi and Precautions (March 2025)
+
+Numerous complaints on the National Cyber Crime Reporting Portal highlight organized online economic crimes involving intimidation, extortion, and "Digital Arrests" by criminals impersonating police, CBI, narcotics departments, RBI, or the Enforcement Directorate.
+
+Modus Operandi:
+- IVR Calling and Impersonation: Scammers use spoofed numbers to pose as law enforcement or regulatory officers.
+- Intimidation: Victims are falsely accused of involvement in illegal shipments (drugs, fake passports via FedEx/DHL), money laundering, or terrorism, sometimes claiming a loved one is in custody or trouble.
+- Digital Confinement: Victims are forced to remain on uninterrupted video calls over Skype or WhatsApp within fake police station setups until demands are met.
+- Demand for Money: Extortion of funds under the guise of settling false legal cases.
+
+Precautions:
+- Real law enforcement agencies never execute arrests digitally; there is no legal concept of "Digital Arrest" under Indian law.
+- Never share personal or financial information over phone or messaging apps without proper verification. Verify claims directly via local police stations or official helplines (1930).

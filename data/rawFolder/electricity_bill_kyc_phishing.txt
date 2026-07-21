@@ -1,0 +1,17 @@
+DOCUMENT ID: CERT-IN-ADV-007
+TITLE: Advisory on Electricity Bill Disconnection SMS and Banking KYC Phishing Scams
+ISSUING AGENCY: Indian Computer Emergency Response Team (CERT-In) & RBI
+DATE OF ISSUE: Current Operating Version
+
+1. OVERVIEW OF THE FRAUD
+Mass-scale phishing campaigns involving SMS alerts warning users that their electricity power supply will be disconnected tonight due to unpaid bills, or that their bank account/PAN/Aadhaar requires immediate KYC updating.
+
+2. MODUS OPERANDI
+- Panic Generation: The messages instruct users to immediately call a given mobile number or click a shortened URL to speak with a "state electricity board officer" or "bank manager."
+- Remote Access & APKs: Fraudsters trick victims into installing remote desktop applications (like AnyDesk or TeamViewer) or malicious APK files under the guise of paying a nominal bill (e.g., ₹10).
+- Financial Drain: Once remote access is established, fraudsters steal net banking credentials, OTPs, and drain bank accounts instantly.
+
+3. PREVENTIVE MEASURES & OFFICIAL STANCE
+- Power disconnections or banking KYC updates are never notified via personal SMS messages containing mobile numbers or web links.
+- Never click on unverified links or download remote-access apps from third-party sources.
+- Report malicious phishing URLs and SMS sender IDs to CERT-In or local cyber cell authorities.

@@ -1,0 +1,20 @@
+ADVISORY: TAU/ADV/013 (Dated: 20th April 2026)[cite: 26]
+Subject: Rising Crypto Scams Targeting Trust Wallet Users[cite: 26]
+Issued By: National Cybercrime Threat Analytics Unit (NCTAU), 14C[cite: 26]
+
+Overview:
+* Trust Wallet is a non-custodial crypto wallet app with over 5 crore Android users globally[cite: 26].
+* NCTAU has observed a significant rise in NCRP complaints linked to cryptocurrency cyber frauds targeting Trust Wallet users[cite: 26].
+
+Modus Operandi:
+* Initial Contact: Scammers initiate contact via P2P platforms like Binance and shift communication to WhatsApp or Telegram to bypass monitoring[cite: 26].
+* Fake Crypto Verification: Victims are falsely told that "crypto asset verification" is mandatory to finalize transactions[cite: 26].
+* Authorization: Victims are redirected to fake wallet verification pages (e.g., testwallet.site, beptest.org, bep20test.com) to connect their Trust Wallet[cite: 26].
+* Smart Contract Permissions: Malicious links prompt users to approve smart contract permissions, unknowingly yielding full asset access[cite: 26].
+* Wallet Drainer: Automated scripts instantly transfer wallet funds without requiring further user approval[cite: 26].
+
+Recommendations:
+* Disconnect all unknown dApps from your Trust Wallet settings immediately if affected[cite: 26].
+* Beware of phishing and fake dApps; never share seed phrases and verify receiver addresses[cite: 26].
+* Verify website authenticity before connecting your crypto wallet and pay close attention to Critical Risk Alert warnings[cite: 26].
+* Report cryptocurrency-related cybercrimes at cybercrime.gov.in or call 1930[cite: 26].

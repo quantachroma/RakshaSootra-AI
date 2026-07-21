@@ -1,0 +1,22 @@
+ADVISORY: TAU/ADV/005 (Dated: 15th October)[cite: 24]
+Subject: WhatsApp Web Account Renting Scam - Using Facebook & Instagram[cite: 24]
+Issued By: National Cybercrime Threat Analytics Unit of 14C, Ministry of Home Affairs[cite: 24]
+
+Overview:
+* An emerging transnational crime trend involves Facebook and Instagram ads claiming users can earn automatic cash by linking their WhatsApp accounts[cite: 24].
+* Ads redirect users to fraudulent web pages or Android APKs imitating legitimate earning platforms[cite: 24].
+* Unsuspecting users are lured by high commissions and instructed to connect their accounts via QR codes, allowing threat actors to exploit WhatsApp's linked-device feature[cite: 24].
+* Compromised accounts are rented out as "mule WhatsApp accounts" to scale illegal activities like fraud, scams, and dissemination of malicious content[cite: 24].
+
+Modus Operandi:
+* Advertisement & Redirection: Meta ads promise easy money, directing users to fake webpages or malicious APKs[cite: 24].
+* Account Linking: Victims scan a QR code via their WhatsApp app, giving scammers continuous session access[cite: 24].
+* Multi-Level Commission Scheme: Promotes pyramid structures (Level 1: 10% commission, Level 2: 5%, Level 3: 2%) to encourage users to onboard others and harvest more accounts[cite: 24].
+* Abuse: Mule WhatsApp accounts are utilized for phishing, payment fraud, and recruitment for further mule services[cite: 24].
+
+Precautions:
+* Renting out WhatsApp accounts and receiving illicit funds can lead to severe legal consequences and arrest[cite: 24].
+* Avoid installing APKs from unknown sources[cite: 24].
+* Be cautious of Meta ads promising quick income, referral commissions, or automatic cash earnings[cite: 24].
+* Periodically check "Linked Devices" in WhatsApp settings for suspicious sessions[cite: 24].
+* Report account compromises or issues via the official WhatsApp support form[cite: 24].
