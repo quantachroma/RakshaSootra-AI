@@ -107,16 +107,16 @@ a connected graph that shows a fraud network, not just one bad link. This is lit
 "sootra" (thread) in RakshaSootra — weaving individual reports into one connected picture.
 
 ### 🔗 Person 2 — Priyanshi Saini
-**Content Checks (What a Scammer Sends You)**
+**Content Checks (What a Scammer Sends You?)**
 Owns: Link Shield Agent · Scam Script Checker Agent · (stretch) RAG upgrade via ChromaDB over
 MHA/RBI advisories.
 
-Defends the first two doors — the link someone clicks, and the call or message someone falls
-for. Both agents follow the same rule-check-then-LLM-check pattern, so the second is faster to
-build once the first is done.
+Defends the initial attack vectors—malicious links and social engineering scripts. Both agents leverage a
+standardized two-tier defense pattern (deterministic heuristic pre-screening backed by LLM/RAG verification) 
+to balance low-latency detection with deep regulatory context.
 
 ### 💰 Person 3 — Ritisha Sharma
-**Money Checks (What Happens to Your Money)**
+**Money Checks (What Happens to Your Money?)**
 Owns: Transaction Guard Agent · Investment Verifier Agent · Entity Extraction (feeding Person
 1's graph).
 
