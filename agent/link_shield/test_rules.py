@@ -79,21 +79,10 @@ KNOWN_BAD = [
 
 KNOWN_GOOD = [
 
-    "https://google.com",
-
-    "https://sbi.co.in",
-
-    "https://paytm.com",
-
-    "https://amazon.in",
-
-    "https://flipkart.com",
-
-    "https://uidai.gov.in",
-
-    "https://hdfcbank.com",
-
-    "https://icicibank.com",
+    "https://google.com", "https://sbi.co.in",    "https://paytm.com",    "https://amazon.in",
+    "https://flipkart.com", "https://uidai.gov.in",    "https://hdfcbank.com",
+    "https://icicibank.com", "https://github.com",  "https://stackoverflow.com",   
+    "https://linkedin.com",  
 
 ]
 
