@@ -111,9 +111,9 @@ a connected graph that shows a fraud network, not just one bad link. This is lit
 Owns: Link Shield Agent · Scam Script Checker Agent · (stretch) RAG upgrade via ChromaDB over
 MHA/RBI advisories.
 
-Defends the initial attack vectors—malicious links and social engineering scripts. Both agents leverage a
-standardized two-tier defense pattern (deterministic heuristic pre-screening backed by LLM/RAG verification) 
-to balance low-latency detection with deep regulatory context.
+Defends the first two doors — the link someone clicks, and the call or message someone falls for. 
+Both agents follow the same rule-check then LLM-check pattern,allowing shared pipelines for heuristic
+pre-screening and grounded regulatory analysis..
 
 ### 💰 Person 3 — Ritisha Sharma
 **Money Checks (What Happens to Your Money?)**
@@ -259,7 +259,3 @@ test input examples in [`docs/person1_router_platform.md`](docs/person1_router_p
 ## 📄 License
 
 This repository is created exclusively for the **ET AI Hackathon 2026**. All rights reserved.
-
-```
-
-```
