@@ -5,8 +5,9 @@ RakshaSootra (रक्षा सूत्र) — "a protective thread." Just a
 around a wrist to safeguard a person, this system threads together individual citizen fraud
 reports into one connected shield against digital scam syndicates.
 
-Instead of treating every scam as an isolated incident, RakshaSootra acts as a unified security
-checkpoint that catches fraudsters at the four main doors they use to steal money: malicious
+AI for Digital Public Safety: Defeating Counterfeiting, Fraud & Digital Arrest Scams
+
+Instead of treating every scam as an isolated incident, RakshaSootra acts as a unified security checkpoint that catches fraudsters at the four main doors they use to steal money: malicious
 links, coercive calls/messages, manipulated payments, and fake investment pitches — and then
 connects the dots across citizens to reveal the syndicate behind them.
 
@@ -21,15 +22,16 @@ connects the dots across citizens to reveal the syndicate behind them.
 | 💰 **The Payment** | Panic-driven UPI transfers made under manipulation |
 | 📈 **The Pitch** | Deepfake celebrity endorsements, fake trading apps promising unrealistic returns |
 
-## ✈️ The Solution — Airport Security Model
+## ✈️ The Solution 
 
-Just as airport security screens every passenger through the same checkpoint regardless of
-what they're carrying, RakshaSootra screens every suspicious input — link, call script,
-payment, or investment pitch — through one unified system before it reaches a citizen's wallet.
+## ✈️ The Solution
 
-Every flagged report also silently feeds a **Fraud Entity Graph**: when Citizen A reports a
-phone number and Citizen B reports a related UPI ID, the graph connects them — so law
-enforcement sees the entire syndicate network, not isolated incidents.
+| Threat Vector | AI Agent | Core Capability |
+|---|---|---|
+| Phishing Links | **Link Shield** | Analyzes URLs for typosquatting, domain age, WHOIS flags, and fake login pages |
+| Digital Arrest Calls & Messages | **Scam Script Checker** | Detects coercion language, digital arrest threats, fake ED/CBI calls, and authority impersonation using ChromaDB RAG |
+| Suspicious Transactions | **Transaction Guard** | Checks UPI handle patterns, flags unverified payees, velocity limits, and enforces cooling-off timers |
+| Fake Investment Schemes | **Investment Verifier** | Cross-checks investment schemes against registered SEBI databases to detect high-yield Ponzi schemes |
 
 ---
 
@@ -98,31 +100,18 @@ enforcement sees the entire syndicate network, not isolated incidents.
 
 ### 🧩 Person 1 — Shraddha Tyagi
 **Platform, Router & Intelligence Layer**
-Owns: Streamlit shell · Router Agent (LangGraph) · shared SQLite schema · Fraud Entity Graph ·
-LEA-style second tab.
+Owns: Streamlit shell · Router Agent (LangGraph) · shared SQLite schema · Fraud Entity Graph ·LEA-style second tab.
 
-You're the officer at airport security *and* the person who built the airport. Every other
-agent plugs into your router. You also own the "wow" layer — turning flagged scam details into
-a connected graph that shows a fraud network, not just one bad link. This is literally the
-"sootra" (thread) in RakshaSootra — weaving individual reports into one connected picture.
 
 ### 🔗 Person 2 — Priyanshi Saini
 **Content Checks (What a Scammer Sends You)**
 Owns: Link Shield Agent · Scam Script Checker Agent · (stretch) RAG upgrade via ChromaDB over
 MHA/RBI advisories.
 
-Defends the first two doors — the link someone clicks, and the call or message someone falls
-for. Both agents follow the same rule-check-then-LLM-check pattern, so the second is faster to
-build once the first is done.
-
 ### 💰 Person 3 — Ritisha Sharma
 **Money Checks (What Happens to Your Money)**
 Owns: Transaction Guard Agent · Investment Verifier Agent · Entity Extraction (feeding Person
 1's graph).
-
-Defends the last two doors — the payment leaving the account, and the investment pitch trying
-to lure money in. Also responsible for pulling out UPI IDs, phone numbers, and domains from
-risky inputs — this is what makes Person 1's fraud graph come alive.
 
 Full individual write-ups: [`docs/person1_router_platform.md`](docs/person1_router_platform.md) ·
 [`docs/person2_content_agents.md`](docs/person2_content_agents.md) ·
