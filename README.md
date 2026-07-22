@@ -104,12 +104,16 @@ Owns: Streamlit shell · Router Agent (LangGraph) · shared SQLite schema · Fra
 
 
 ### 🔗 Person 2 — Priyanshi Saini
-**Content Checks (What a Scammer Sends You)**
+**Content Checks (What a Scammer Sends You?)**
 Owns: Link Shield Agent · Scam Script Checker Agent · (stretch) RAG upgrade via ChromaDB over
 MHA/RBI advisories.
 
+Defends the first two doors — the link someone clicks, and the call or message someone falls for. 
+Both agents follow the same rule-check then LLM-check pattern,allowing shared pipelines for heuristic
+pre-screening and grounded regulatory analysis..
+
 ### 💰 Person 3 — Ritisha Sharma
-**Money Checks (What Happens to Your Money)**
+**Money Checks (What Happens to Your Money?)**
 Owns: Transaction Guard Agent · Investment Verifier Agent · Entity Extraction (feeding Person
 1's graph).
 
@@ -248,7 +252,3 @@ test input examples in [`docs/person1_router_platform.md`](docs/person1_router_p
 ## 📄 License
 
 This repository is created exclusively for the **ET AI Hackathon 2026**. All rights reserved.
-
-```
-
-```
