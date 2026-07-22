@@ -22,8 +22,6 @@ connects the dots across citizens to reveal the syndicate behind them.
 | 💰 **The Payment** | Panic-driven UPI transfers made under manipulation |
 | 📈 **The Pitch** | Deepfake celebrity endorsements, fake trading apps promising unrealistic returns |
 
-## ✈️ The Solution 
-
 ## ✈️ The Solution
 
 | Threat Vector | AI Agent | Core Capability |
